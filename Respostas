@@ -1,0 +1,84 @@
+1- 77
+Explicação: 
+- O código começa com K igual a 1 e SOMA igual a 0.
+- O loop incrementa K e adiciona seu valor atual à SOMA até que K atinja 12.
+- No final, a soma dos números de 1 a 12 é calculada e impressa.
+
+2 - a)9, b) 128, c) 49, d) 100, e) 13, f) 20
+Explicação:
+a) Esta é uma sequência de números ímpares. Cada número é obtido adicionando 2 ao número anterior.
+b) Esta é uma sequência de potências de 2. Cada número é o dobro do anterior.
+c) Esta é uma sequência de números quadrados. Cada número é o quadrado de um número inteiro
+d) Esta é uma sequência de quadrados de números pares.
+e) Esta é a sequência de Fibonacci. Cada número é a soma dos dois números anteriores.
+f) Esta sequência alternar entre números que são múltiplos de 2 e números consecutivos.
+
+3 -
+void calculateBilling(){  
+  // Gerar faturamento diário aleatório para 365 dias  
+  List<double> faturamentoDiario = List.generate(365, (index) => Random().nextDouble() * 1000);  
+  
+  // Calcular o menor e o maior faturamento  
+  double menorFaturamento = faturamentoDiario.reduce((a, b) => a < b ? a : b);  
+  double maiorFaturamento = faturamentoDiario.reduce((a, b) => a > b ? a : b);  
+  
+  // Calcular a média anual  
+  double mediaAnual = faturamentoDiario.reduce((a, b) => a + b) / faturamentoDiario.length;  
+  
+  // Contar dias com faturamento superior à média  
+  int diasAcimaDaMedia = faturamentoDiario.where((faturamento) => faturamento > mediaAnual).length;  
+  
+  // Exibir resultados  
+  print("Menor faturamento: R\$ ${menorFaturamento.toStringAsFixed(2)}");  
+  print("Maior faturamento: R\$ ${maiorFaturamento.toStringAsFixed(2)}");  
+  print("Número de dias com faturamento acima da média: $diasAcimaDaMedia");  
+}
+
+4- 
+Tabelas:
++-----------------+          +-----------------+
+|     Clientes    |          |     Estados     |
+|-----------------|          |-----------------|
+| PK id_cliente   |--------> | PK sigla        |
+| razao_social    |          | nome            |
+| FK estado       |          +-----------------+
++-----------------+
+         | 1
+         | 
+         |
+         | N
++-----------------+
+|    Telefones    |
+|-----------------|
+| PK id_telefone  |
+| numero          |
+| tipo            |
+| FK id_cliente   |
++-----------------+
+
+Query: 
+SELECT 
+    c.id_cliente AS codigo,
+    c.razao_social,
+    t.numero AS telefone,
+    t.tipo AS tipo_telefone
+FROM 
+    clientes c
+JOIN 
+    telefones t ON c.id_cliente = t.id_cliente
+JOIN 
+    estados e ON c.id_estado = e.id_estado
+WHERE 
+    e.sigla = 'SP';
+
+
+5 - 
+Para ter uma noção em relação ao tempo fiz o seguinte:
+- Calculei a velocidade relativa entre os dois veículos: 90+80=170 km/h
+- Tempo até se cruzarem: 125 km / 170 km/h = 0,735 horas = 44 minutos. Ou seja vão se cruzar 44 minutos depois do início da viagem.
+- Pedágios: 3 x 5 = 15 minutos de tempo a mais para o carro.
+- Tempo que o carro leva até o cruzamento: 44 minutos + 15 minutos
+- O caminhão leva 44 minutos até o cruzamento
+  Porém a pergunta é em relação a distância no momento que se cruzam e não o tempo, embora o carro leve mais tempo para chegar ao ponto de cruzamento, quando isso acontece o carro e o caminhão estarão à mesma distância de Ribeirão Preto.
+
+
